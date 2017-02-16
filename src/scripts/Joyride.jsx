@@ -736,7 +736,9 @@ class Joyride extends React.Component {
     }
 
     const rect = target.getBoundingClientRect();
+    console.log(rect)
     const targetTop = rect.top + (window.pageYOffset || document.documentElement.scrollTop);
+    console.log(targetTop)
     const position = this.calcPosition(step);
     let scrollTo = 0;
 
@@ -747,6 +749,8 @@ class Joyride extends React.Component {
     else if (/^bottom|^left|^right/.test(position)) {
       scrollTo = Math.floor(targetTop - scrollOffset);
     }
+
+    console.log(scrollTo)
 
     return scrollTo;
   }
