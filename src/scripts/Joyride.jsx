@@ -70,6 +70,7 @@ class Joyride extends React.Component {
     scrollOffset: React.PropTypes.number,
     scrollToFirstStep: React.PropTypes.bool,
     scrollToSteps: React.PropTypes.bool,
+    scrollContainer: React.PropTypes.node,
     showBackButton: React.PropTypes.bool,
     showOverlay: React.PropTypes.bool,
     showSkipButton: React.PropTypes.bool,
@@ -100,6 +101,7 @@ class Joyride extends React.Component {
     scrollOffset: 20,
     scrollToFirstStep: false,
     scrollToSteps: true,
+    scrollContainer: document.documentElement,
     showBackButton: true,
     showOverlay: true,
     showSkipButton: false,
@@ -727,7 +729,7 @@ class Joyride extends React.Component {
    */
   getScrollTop() {
     const { index, yPos } = this.state;
-    const { scrollOffset, steps } = this.props;
+    const { scrollOffset, steps, scrollContainer } = this.props;
     const step = steps[index];
     const target = this.getStepTargetElement(step);
 
@@ -737,7 +739,7 @@ class Joyride extends React.Component {
 
     const rect = target.getBoundingClientRect();
     console.log(rect)
-    const targetTop = rect.top + (window.pageYOffset || document.documentElement.scrollTop);
+    const targetTop = rect.top + scrollContainer.scrollTop;
     console.log(targetTop)
     const position = this.calcPosition(step);
     let scrollTo = 0;
