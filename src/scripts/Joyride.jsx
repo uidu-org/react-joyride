@@ -70,7 +70,7 @@ class Joyride extends React.Component {
     scrollOffset: React.PropTypes.number,
     scrollToFirstStep: React.PropTypes.bool,
     scrollToSteps: React.PropTypes.bool,
-    scrollContainer: React.PropTypes.node,
+    // scrollContainer: React.PropTypes.node,
     showBackButton: React.PropTypes.bool,
     showOverlay: React.PropTypes.bool,
     showSkipButton: React.PropTypes.bool,
@@ -122,8 +122,6 @@ class Joyride extends React.Component {
       steps,
       type
     } = this.props;
-
-    console.log(this.props.scrollContainer)
 
     logger({
       type: 'joyride:initialized',
@@ -738,6 +736,8 @@ class Joyride extends React.Component {
     if (!target) {
       return 0;
     }
+
+    console.log(scrollContainer)
 
     const rect = target.getBoundingClientRect();
     console.log(rect)
