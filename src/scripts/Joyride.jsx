@@ -123,6 +123,8 @@ class Joyride extends React.Component {
       type
     } = this.props;
 
+    console.log(this.props.scrollContainer)
+
     logger({
       type: 'joyride:initialized',
       msg: [this.props],
