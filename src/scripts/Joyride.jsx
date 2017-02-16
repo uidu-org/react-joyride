@@ -70,7 +70,7 @@ class Joyride extends React.Component {
     scrollOffset: React.PropTypes.number,
     scrollToFirstStep: React.PropTypes.bool,
     scrollToSteps: React.PropTypes.bool,
-    // scrollContainer: React.PropTypes.node,
+    scrollContainer: React.PropTypes.node,
     showBackButton: React.PropTypes.bool,
     showOverlay: React.PropTypes.bool,
     showSkipButton: React.PropTypes.bool,
@@ -994,7 +994,7 @@ class Joyride extends React.Component {
       const offsetY = nested.get(step, 'style.beacon.offsetY') || 0;
       const position = this.calcPosition(step);
       const body = document.body.getBoundingClientRect();
-      const scrollTop = step.isFixed === true ? 0 : body.top;
+      const scrollTop = step.isFixed === true ? 0 : this.getScrollTop();
       const component = this.getElementDimensions();
       const rect = target.getBoundingClientRect();
 
