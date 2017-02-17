@@ -216,7 +216,7 @@ export default class JoyrideTooltip extends React.Component {
    * @returns {Object}                       Calculated styles for arrow, buttons, header, main, footer, hole, and tooltip
    */
   setStyles(stepStyles, opts, props) {
-    const { holePadding, step, xPos, yPos } = props;
+    const { holePadding, step, xPos, yPos, scrollContainer } = props;
     const isFixed = step.isFixed === true;
 
     const styles = {
