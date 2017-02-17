@@ -737,7 +737,6 @@ class Joyride extends React.Component {
       return 0;
     }
 
-    console.log(scrollContainer)
 
     const rect = target.getBoundingClientRect();
     console.log(rect)
@@ -997,6 +996,20 @@ class Joyride extends React.Component {
       const scrollTop = step.isFixed === true ? 0 : this.getScrollTop();
       const component = this.getElementDimensions();
       const rect = target.getBoundingClientRect();
+
+
+      console.log('body')
+      console.log(body)
+      console.log('scrollTop')
+      console.log(scrollTop)
+      console.log('component')
+      console.log(component)
+      console.log('rect')
+      console.log(rect)
+      console.log('offsetX')
+      console.log(offsetX)
+      console.log('offsetY')
+      console.log(offsetY)
 
       // Calculate x position
       if (/^left/.test(position)) {
