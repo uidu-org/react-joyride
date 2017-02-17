@@ -236,7 +236,7 @@ export default class JoyrideTooltip extends React.Component {
     };
 
     styles.hole = {
-      top: Math.round((opts.rect.top - (isFixed ? 0 : document.body.getBoundingClientRect().top)) - holePadding  + scrollContainer.scrollTop),
+      top: Math.round(scrollContainer.scrollTop + ((opts.rect.top - (isFixed ? 0 : document.body.getBoundingClientRect().top)) - holePadding)),
       left: Math.round(opts.rect.left - holePadding),
       width: Math.round(opts.rect.width + (holePadding * 2)),
       height: Math.round(opts.rect.height + (holePadding * 2))

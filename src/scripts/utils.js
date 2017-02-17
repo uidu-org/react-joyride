@@ -54,6 +54,8 @@ export const browser = getBrowser();
 
 /**
  * Helper function to get the browser-normalized "document height"
+ *
+ * @param {Element} scrollContainer
  * @returns {Number}
  */
 export function getDocHeight(scrollContainer) {

@@ -67,10 +67,10 @@ class Joyride extends React.Component {
     resizeDebounce: React.PropTypes.bool,
     resizeDebounceDelay: React.PropTypes.number,
     run: React.PropTypes.bool,
+    scrollContainer: React.PropTypes.node,
     scrollOffset: React.PropTypes.number,
     scrollToFirstStep: React.PropTypes.bool,
     scrollToSteps: React.PropTypes.bool,
-    scrollContainer: React.PropTypes.node,
     showBackButton: React.PropTypes.bool,
     showOverlay: React.PropTypes.bool,
     showSkipButton: React.PropTypes.bool,
@@ -739,11 +739,7 @@ class Joyride extends React.Component {
 
 
     const rect = target.getBoundingClientRect();
-    console.log(rect)
     const targetTop = rect.top + scrollContainer.scrollTop;
-    const oldTargetTop = rect.top + (window.pageYOffset || document.documentElement.scrollTop);
-    console.log('targetTop: ' + targetTop)
-    console.log('oldTargetTop: ' + oldTargetTop)
     const position = this.calcPosition(step);
     let scrollTo = 0;
 
@@ -754,8 +750,6 @@ class Joyride extends React.Component {
     else if (/^bottom|^left|^right/.test(position)) {
       scrollTo = Math.floor(targetTop - scrollOffset);
     }
-
-    console.log(scrollTo)
 
     return scrollTo;
   }
@@ -997,20 +991,6 @@ class Joyride extends React.Component {
       const component = this.getElementDimensions();
       const rect = target.getBoundingClientRect();
 
-
-      console.log('body')
-      console.log(body)
-      console.log('scrollTop')
-      console.log(scrollTop)
-      console.log('component')
-      console.log(component)
-      console.log('rect')
-      console.log(rect)
-      console.log('offsetX')
-      console.log(offsetX)
-      console.log('offsetY')
-      console.log(offsetY)
-
       // Calculate x position
       if (/^left/.test(position)) {
         placement.x = rect.left - (displayTooltip ? component.width + tooltipOffset : (component.width / 2) + offsetX);
@@ -1024,13 +1004,13 @@ class Joyride extends React.Component {
 
       // Calculate y position
       if (/^top/.test(position)) {
-        placement.y = (rect.top - scrollTop) - (displayTooltip ? component.height + tooltipOffset : (component.height / 2) + offsetY) + scrollContainer.scrollTop;
+        placement.y = scrollContainer.scrollTop + ((rect.top - scrollTop) - (displayTooltip ? component.height + tooltipOffset : (component.height / 2) + offsetY));
       }
       else if (/^bottom/.test(position)) {
-        placement.y = (rect.top - scrollTop) + (rect.height - (displayTooltip ? -tooltipOffset : (component.height / 2) - offsetY)) + scrollContainer.scrollTop;
+        placement.y = scrollContainer.scrollTop + ((rect.top - scrollTop) + (rect.height - (displayTooltip ? -tooltipOffset : (component.height / 2) - offsetY)));
       }
       else {
-        placement.y = (rect.top - scrollTop) + scrollContainer.scrollTop;
+        placement.y = scrollContainer.scrollTop + ((rect.top - scrollTop));
       }
 
       /* istanbul ignore else */
