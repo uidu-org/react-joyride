@@ -993,7 +993,7 @@ class Joyride extends React.Component {
       const offsetY = nested.get(step, 'style.beacon.offsetY') || 0;
       const position = this.calcPosition(step);
       const body = document.body.getBoundingClientRect();
-      const scrollTop = step.isFixed === true ? 0 : this.getScrollTop();
+      const scrollTop = step.isFixed === true ? 0 : body.top;
       const component = this.getElementDimensions();
       const rect = target.getBoundingClientRect();
 
