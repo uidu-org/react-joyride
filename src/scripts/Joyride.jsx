@@ -966,7 +966,7 @@ class Joyride extends React.Component {
    */
   calcPlacement() {
     const { index, isRunning, standaloneData, shouldRenderTooltip } = this.state;
-    const { steps, tooltipOffset } = this.props;
+    const { steps, tooltipOffset, scrollContainer } = this.props;
     const step = standaloneData || (steps[index] || {});
     const displayTooltip = standaloneData ? true : shouldRenderTooltip;
     const target = this.getStepTargetElement(step);
@@ -1024,7 +1024,7 @@ class Joyride extends React.Component {
 
       // Calculate y position
       if (/^top/.test(position)) {
-        placement.y = (rect.top - scrollTop) - (displayTooltip ? component.height + tooltipOffset : (component.height / 2) + offsetY) + this.getScrollTop();
+        placement.y = (rect.top - scrollTop) - (displayTooltip ? component.height + tooltipOffset : (component.height / 2) + offsetY) + (rect.top + scrollContainer.scrollTop);
       }
       else if (/^bottom/.test(position)) {
         placement.y = (rect.top - scrollTop) + (rect.height - (displayTooltip ? -tooltipOffset : (component.height / 2) - offsetY));
