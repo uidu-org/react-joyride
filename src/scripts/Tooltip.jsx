@@ -22,6 +22,7 @@ export default class JoyrideTooltip extends React.Component {
       'bottom', 'bottom-left', 'bottom-right',
       'right', 'left',
     ]).isRequired,
+    scrollContainer: React.PropTypes.node,
     // sanitized selector string
     selector: React.PropTypes.string.isRequired,
     showOverlay: React.PropTypes.bool.isRequired,
@@ -235,7 +236,7 @@ export default class JoyrideTooltip extends React.Component {
     };
 
     styles.hole = {
-      top: Math.round((opts.rect.top - (isFixed ? 0 : document.body.getBoundingClientRect().top)) - holePadding),
+      top: Math.round((opts.rect.top - (isFixed ? 0 : document.body.getBoundingClientRect().top)) - holePadding  + scrollContainer.scrollTop),
       left: Math.round(opts.rect.left - holePadding),
       width: Math.round(opts.rect.width + (holePadding * 2)),
       height: Math.round(opts.rect.height + (holePadding * 2))
