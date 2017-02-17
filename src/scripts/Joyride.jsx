@@ -1060,7 +1060,7 @@ class Joyride extends React.Component {
    * @returns {string}
    */
   calcPosition(step) {
-    const { tooltipOffset } = this.props;
+    const { tooltipOffset, scrollContainer } = this.props;
     const body = document.body;
     const target = this.getStepTargetElement(step);
     const rect = target.getBoundingClientRect();
@@ -1077,7 +1077,7 @@ class Joyride extends React.Component {
     if (/^top/.test(position) && (rect.top + body.scrollTop) - (height + tooltipOffset) < 0) {
       position = 'bottom';
     }
-    else if (/^bottom/.test(position) && (rect.bottom + body.scrollTop) + (height + tooltipOffset) > getDocHeight()) {
+    else if (/^bottom/.test(position) && (rect.bottom + body.scrollTop) + (height + tooltipOffset) > getDocHeight(scrollContainer)) {
       position = 'top';
     }
 
@@ -1114,8 +1114,9 @@ class Joyride extends React.Component {
    * @returns {Number}
    */
   preventWindowOverflow(value, axis, elWidth, elHeight) {
+    const { scrollContainer } = this.props;
     const winWidth = window.innerWidth;
-    const docHeight = getDocHeight();
+    const docHeight = getDocHeight(scrollContainer);
     let newValue = value;
 
     /* istanbul ignore else */
